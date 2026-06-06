@@ -71,27 +71,40 @@
     }
 
     /* ── INTRO PANEL ── */
-    .intro { padding: 40px; display: flex; flex-direction: column; gap: 0; }
+    .intro {
+      padding: 40px; display: flex; flex-direction: column; gap: 0;
+      position: relative; overflow: hidden;
+      background: #0a0e0c !important; border-color: #1a2820 !important;
+    }
+    .intro::before {
+      content: '';
+      position: absolute; right: -60px; bottom: -60px;
+      width: 380px; height: 380px;
+      background: url('emblem.jpg') center/contain no-repeat;
+      opacity: 0.07; pointer-events: none; z-index: 0;
+      filter: grayscale(100%);
+    }
+    .intro > * { position: relative; z-index: 1; }
     .topline {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 7px 14px; border: 1px solid #c5e0d4;
-      border-radius: 999px; background: var(--green-light);
-      color: var(--green-dark); font-weight: 700; font-size: 12.5px;
+      padding: 7px 14px; border: 1px solid rgba(0,192,80,0.25);
+      border-radius: 999px; background: rgba(0,150,50,0.12);
+      color: #00c060; font-weight: 700; font-size: 12.5px;
       width: max-content; margin-bottom: 22px; letter-spacing: 0.01em;
     }
     .intro h1 {
       font-size: clamp(38px, 5.5vw, 64px); line-height: 0.95;
-      font-weight: 800; letter-spacing: -0.05em; margin-bottom: 14px;
+      font-weight: 800; letter-spacing: -0.05em; margin-bottom: 14px; color: #f0f4f2;
     }
-    .intro h1 .accent { color: var(--green); }
-    .intro .role {
-      font-size: 16px; font-weight: 700; color: #2a3832; margin-bottom: 10px;
-    }
-    .intro .summary { font-size: 15px; color: var(--muted); margin-bottom: 22px; max-width: 560px; }
+    .intro h1 .accent { color: #00c060; }
+    .intro .role { font-size: 16px; font-weight: 700; color: #8ab09a; margin-bottom: 10px; }
+    .intro .summary { font-size: 15px; color: #6a8878; margin-bottom: 22px; max-width: 560px; }
+    .intro .summary strong { color: #b0c8bc; }
     .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
     .badge {
-      padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
-      background: var(--bg); color: #3a5048; font-size: 12.5px; font-weight: 600;
+      padding: 6px 12px; border-radius: 999px;
+      border: 1px solid #1e3028; background: #0f1a14;
+      color: #6a8878; font-size: 12.5px; font-weight: 600;
     }
 
     /* ── DARK CONTACT BUTTONS (preserved from dark theme) ── */
@@ -124,59 +137,14 @@
     /* ── VISUAL PANEL ── */
     .visual-panel {
       border-radius: var(--radius); overflow: hidden;
-      display: flex; flex-direction: column; min-height: 560px;
+      min-height: 560px; position: relative;
+      background: #111;
     }
-
-    /* TOP: official profile photo */
-    .visual-top {
-      flex: 1; position: relative; overflow: hidden; min-height: 280px;
-      background: #f0f0f0;
-    }
-    .visual-top img.profile-img {
+    .visual-panel img.profile-img {
       width: 100%; height: 100%; object-fit: cover;
       object-position: center top; display: block;
+      filter: grayscale(100%);
     }
-    /* placeholder when no photo yet */
-    .visual-top .photo-placeholder {
-      width: 100%; height: 100%; min-height: 280px;
-      background: #e8f0ec;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 8px; font-size: 52px;
-    }
-    .visual-top .photo-placeholder span {
-      font-family: var(--mono); font-size: 11px; color: var(--muted);
-    }
-
-    /* BOTTOM: WOQOD work photo */
-    .visual-bottom {
-      position: relative; overflow: hidden; height: 240px; flex-shrink: 0;
-    }
-    .visual-bottom img.work-img {
-      width: 100%; height: 100%; object-fit: cover;
-      object-position: center 20%; display: block;
-    }
-    .visual-bottom::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(3,20,13,.55), transparent 60%);
-    }
-    .visual-bottom .work-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(155deg, #0e2218, #1a3a2a);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 6px; font-size: 36px;
-    }
-    .visual-bottom .work-placeholder span {
-      font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.3);
-    }
-    .work-label {
-      position: absolute; left: 14px; bottom: 14px; z-index: 2;
-      background: rgba(255,255,255,0.92); border-radius: 10px;
-      padding: 8px 12px; display: flex; align-items: center; gap: 8px;
-      backdrop-filter: blur(8px); box-shadow: 0 4px 16px rgba(0,0,0,.2);
-    }
-    .work-label img { width: 28px; height: 28px; object-fit: contain; }
-    .work-label-text { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.3; }
-    .work-label-text span { display: block; font-size: 10px; color: var(--muted); font-weight: 500; }
 
     /* ── QUICK LINKS ── */
     .quick { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin: 20px 0; }
@@ -190,58 +158,59 @@
     .quick a:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
     .quick a span { display: block; color: var(--muted); font-size: 11px; font-weight: 600; margin-top: 3px; }
 
-    /* ── SUDAN SECTION (preserved from dark theme, adapted) ── */
+    /* ── SUDAN SECTION ── */
     .sudan-wrap {
       border-radius: var(--radius); overflow: hidden; margin: 0 0 20px;
       box-shadow: var(--shadow-sm);
     }
-    .sudan-flag-bar { display: flex; height: 5px; }
-    .sudan-flag-bar span:nth-child(1) { flex:1; background:#d21034; }
-    .sudan-flag-bar span:nth-child(2) { flex:1; background:#cccccc; }
-    .sudan-flag-bar span:nth-child(3) { flex:1; background:#111111; }
     .sudan-inner {
-      background: linear-gradient(135deg,#0f1a14 0%,#0a1a0a 60%,#0f1a14 100%);
-      padding: 22px 24px; display: flex; align-items: center; gap: 20px;
+      background: linear-gradient(135deg,#0c1810 0%,#0a1a0a 60%,#0c1810 100%);
+      padding: 18px 24px; display: flex; align-items: center; gap: 20px;
       position: relative; overflow: hidden;
     }
+    /* Sudan flag stripe on left edge */
     .sudan-inner::before {
-      content:''; position:absolute; inset:0;
-      background: radial-gradient(ellipse at 10% 50%, rgba(0,150,50,.08) 0%, transparent 60%);
+      content:''; position:absolute; left:0; top:0; bottom:0; width:5px;
+      background: linear-gradient(to bottom, #d21034 33.3%, #ffffff 33.3%, #ffffff 66.6%, #000000 66.6%);
     }
+    /* green triangle on right */
     .sudan-tri {
-      position:absolute; right:0; top:0; bottom:0; width:55px;
+      position:absolute; right:0; top:0; bottom:0; width:50px;
       background:
         linear-gradient(to bottom right,#009a44 50%,transparent 50%),
         linear-gradient(to top right,#009a44 50%,transparent 50%);
-      background-size:55px 50%,55px 50%;
+      background-size:50px 50%,50px 50%;
       background-position:top right,bottom right;
-      background-repeat:no-repeat; opacity:0.3;
+      background-repeat:no-repeat; opacity:0.35;
     }
-    .sudan-emblem {
-      width:100px; height:100px; flex-shrink:0; border-radius:50%;
-      background:#fff; border:3px solid rgba(0,192,80,.45);
-      box-shadow:0 0 28px rgba(0,150,50,.35),0 0 0 6px rgba(0,150,50,.08);
-      display:flex; align-items:center; justify-content:center;
-      overflow:hidden; padding:6px;
+    /* Flag display circle */
+    .sudan-flag-circle {
+      width:72px; height:72px; flex-shrink:0; border-radius:50%;
+      border:2px solid rgba(0,192,80,.4);
+      box-shadow:0 0 20px rgba(0,150,50,.3);
+      overflow:hidden; display:flex; flex-direction:column;
+      position:relative; z-index:1;
     }
-    .sudan-emblem img { width:100%; height:100%; object-fit:contain; }
-    .sudan-text { flex:1; position:relative; z-index:1; }
-    .sudan-nat  { font-family:var(--mono); font-size:0.68rem; color:#00c060; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:4px; }
-    .sudan-name { font-size:1.3rem; font-weight:800; color:#fff; margin-bottom:3px; }
+    .sudan-flag-circle .f-red   { flex:1; background:#d21034; }
+    .sudan-flag-circle .f-white { flex:1; background:#ffffff; }
+    .sudan-flag-circle .f-black { flex:1; background:#111111; }
+    /* green triangle inside circle */
+    .sudan-flag-circle::after {
+      content:''; position:absolute; left:0; top:0; bottom:0;
+      width:0; height:0;
+      border-top: 36px solid transparent;
+      border-bottom: 36px solid transparent;
+      border-left: 28px solid #009a44;
+    }
+    .sudan-text { flex:1; position:relative; z-index:1; padding-left:4px; }
+    .sudan-nat  { font-family:var(--mono); font-size:0.65rem; color:#00c060; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:5px; }
+    .sudan-name { font-size:1.25rem; font-weight:800; color:#fff; margin-bottom:4px; }
     .sudan-name span { color:#00c060; }
-    .sudan-motto { font-family:var(--mono); font-size:0.78rem; color:rgba(255,255,255,.4); font-style:italic; margin-bottom:14px; }
-    .sudan-wiki {
-      display:inline-flex; align-items:center; gap:7px;
-      padding:7px 14px; background:rgba(0,150,50,.12);
-      border:1px solid rgba(0,150,50,.3); border-radius:7px;
-      font-family:var(--mono); font-size:0.72rem; color:#00c060;
-      text-decoration:none; transition:all 0.2s;
-    }
-    .sudan-wiki:hover { background:rgba(0,150,50,.22); border-color:#00c060; transform:translateY(-1px); }
-    .sudan-wiki svg { width:13px; height:13px; fill:currentColor; }
+    .sudan-slogan-ar { font-family:var(--arabic); font-size:1.05rem; color:rgba(255,255,255,.85); margin-bottom:2px; direction:rtl; }
+    .sudan-slogan-en { font-family:var(--mono); font-size:0.72rem; color:rgba(255,255,255,.4); font-style:italic; }
     @media(max-width:520px){
-      .sudan-inner{flex-direction:column; text-align:center; gap:14px;}
-      .sudan-tri{display:none;}
+      .sudan-inner { flex-direction:column; text-align:center; gap:12px; padding:16px; }
+      .sudan-tri { display:none; }
     }
 
     /* ── SECTION ── */
@@ -450,32 +419,9 @@
       </div>
     </div>
 
-    <!-- RIGHT: Visual panel — top: profile photo, bottom: WOQOD work photo -->
+    <!-- RIGHT: B&W profile photo full height -->
     <div class="card visual-panel">
-
-      <!-- TOP: Official profile photo (white background) -->
-      <div class="visual-top">
-        <!-- When ready: replace placeholder with:
-        <img class="profile-img" src="assets/profile.jpg" alt="Mohanad M Dirar" />
-        -->
-        <img class="profile-img" src="emblem.jpg" alt="Mohanad M Dirar" />
-      </div>
-
-      <!-- BOTTOM: WOQOD work photo -->
-      <div class="visual-bottom">
-        <!-- When ready: replace placeholder with:
-        <img class="work-img" src="assets/work.jpg" alt="Mohanad at WOQOD" />
-        -->
-        <img class="work-img" src="emblem.jpg" alt="Mohanad at WOQOD" />
-        <div class="work-label">
-          <img src="work.jpg" alt="WOQOD" style="border-radius:4px;" />
-          <div class="work-label-text">
-            WOQOD · Qatar Fuel
-            <span>Doha, Qatar 🇶🇦</span>
-          </div>
-        </div>
-      </div>
-
+      <img class="profile-img" src="profile.png" alt="Mohanad M Dirar" />
     </div>
   </div><!-- /hero-grid -->
 
@@ -485,24 +431,6 @@
     <a href="tel:+97470272762">📞 Mobile<span>+974 7027 2762</span></a>
     <a href="https://wa.me/97466926299" target="_blank" rel="noopener">💬 WhatsApp<span>+974 6692 6299</span></a>
     <a href="https://linkedin.com/in/mohanad-dirar/" target="_blank" rel="noopener">💼 LinkedIn<span>/mohanad-dirar</span></a>
-  </div>
-
-  <!-- ── SUDAN SECTION ── -->
-  <div class="sudan-wrap">
-    <div class="sudan-flag-bar"><span></span><span></span><span></span></div>
-    <div class="sudan-inner">
-      <div class="sudan-tri"></div>
-      <div class="sudan-emblem">
-        <img src="Emblem_of_Sudan_svg.png" alt="Emblem of Sudan" />
-      </div>
-      <div class="sudan-text">
-        <div class="sudan-nat">🇸🇩 Nationality</div>
-        <div class="sudan-name">Sudanese <span>/ سوداني</span></div>
-        <div class="sudan-motto" style="font-size:1rem; color:rgba(255,255,255,.65); font-style:normal; font-family:var(--arabic); margin-bottom:6px;">النصر لنا</div>
-        <div class="sudan-motto">Victory is ours</div>
-      </div>
-    </div>
-    <div class="sudan-flag-bar"><span></span><span></span><span></span></div>
   </div>
 
   <!-- ── ABOUT ── -->
@@ -520,7 +448,6 @@
       </div>
       <div class="info-list">
         <div class="info-row"><b>Location</b><span>Doha, Qatar 📍</span></div>
-        <div class="info-row"><b>Nationality</b><span>🇸🇩 Sudanese</span></div>
         <div class="info-row"><b>Languages</b><span>Arabic &amp; English</span></div>
         <div class="info-row"><b>Email</b><span>mohneddirar@hotmail.com</span></div>
         <div class="info-row"><b>Phone</b><span>+974 7027 2762</span></div>
@@ -653,7 +580,6 @@
 
   <!-- ── FOOTER CONTACT ── -->
   <footer id="contact">
-    <img src="Emblem_of_Sudan_svg.png" alt="Sudan emblem" />
     <div class="ft-name">Mohanad M Dirar</div>
     <div class="ft-sub">IT Engineer · Maker · Doha, Qatar 🇸🇩</div>
     <div class="footer-contacts">
