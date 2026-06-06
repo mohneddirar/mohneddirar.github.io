@@ -3,308 +3,385 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b7a4b" />
   <title>Mohanad M Dirar — IT Engineer & Maker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Kufi+Arabic:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0a0a0f;
-      --bg2: #0f0f18;
-      --bg3: #141420;
-      --surface: #1a1a28;
-      --border: #2a2a40;
-      --accent: #00ff9d;
+      --bg: #f0f4f2;
+      --bg2: #e8f0ec;
+      --card: #ffffff;
+      --border: #dce8e2;
+      --ink: #14201a;
+      --muted: #5a706a;
+      --dimmer: #8fa49c;
+      --green: #0b7a4b;
+      --green-dark: #075436;
+      --green-light: #e8f5ee;
+      --accent: #00c060;
       --accent2: #7c5cfc;
-      --accent3: #ff6b6b;
-      --text: #e8e8f0;
-      --text-dim: #8888aa;
-      --text-dimmer: #555570;
+      --accent3: #e05555;
+      --wa: #25d366;
+      --wa-dark: #128c7e;
       --mono: 'JetBrains Mono', monospace;
-      --sans: 'Space Grotesk', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --arabic: 'Noto Kufi Arabic', 'Inter', sans-serif;
+      --radius: 20px;
+      --shadow: 0 8px 32px rgba(10,40,28,.10);
+      --shadow-sm: 0 2px 12px rgba(10,40,28,.07);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    /* ── PAGE ── */
+    .page { max-width: 1120px; margin: 0 auto; padding: 28px 20px 60px; }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(240,244,242,0.88); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
+      padding: 0 20px;
     }
-    .nav-logo { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); letter-spacing: 0.05em; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--text-dim); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--green); font-weight: 600; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 600; color: var(--muted); letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 8rem 2rem 4rem;
-      max-width: 1100px; margin: 0 auto;
-      position: relative;
+    /* ── HERO GRID ── */
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px;
+      align-items: stretch; margin-top: 24px;
     }
-    .hero-tag {
-      font-family: var(--mono); font-size: 0.8rem; color: var(--accent);
-      letter-spacing: 0.12em; margin-bottom: 1.5rem;
+    @media(max-width:860px){ .hero-grid { grid-template-columns: 1fr; } }
+
+    /* ── CARD BASE ── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow);
     }
-    .hero h1 {
-      font-family: var(--mono); font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 700; line-height: 1.05; margin-bottom: 1.2rem;
-      color: var(--text);
+
+    /* ── INTRO PANEL ── */
+    .intro { padding: 40px; display: flex; flex-direction: column; gap: 0; }
+    .topline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px; border: 1px solid #c5e0d4;
+      border-radius: 999px; background: var(--green-light);
+      color: var(--green-dark); font-weight: 700; font-size: 12.5px;
+      width: max-content; margin-bottom: 22px; letter-spacing: 0.01em;
     }
-    .hero h1 span { color: var(--accent); }
-    .hero-sub {
-      font-family: var(--mono); font-size: 0.95rem; color: var(--text-dim);
-      margin-bottom: 1.5rem;
+    .intro h1 {
+      font-size: clamp(38px, 5.5vw, 64px); line-height: 0.95;
+      font-weight: 800; letter-spacing: -0.05em; margin-bottom: 14px;
     }
-    .hero-sub span { color: var(--accent2); }
-    .hero-desc { font-size: 1.1rem; color: var(--text-dim); max-width: 620px; margin-bottom: 2rem; }
-    .hero-desc strong { color: var(--text); }
-    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+    .intro h1 .accent { color: var(--green); }
+    .intro .role {
+      font-size: 16px; font-weight: 700; color: #2a3832; margin-bottom: 10px;
+    }
+    .intro .summary { font-size: 15px; color: var(--muted); margin-bottom: 22px; max-width: 560px; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
     .badge {
-      font-family: var(--mono); font-size: 0.75rem; padding: 0.3rem 0.7rem;
-      border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim);
+      padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--bg); color: #3a5048; font-size: 12.5px; font-weight: 600;
     }
 
-    /* ── CONTACT CARD (NEW PROMINENT SECTION) ── */
-    .contact-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 700px;
-      margin-bottom: 2rem;
-      position: relative;
-      overflow: hidden;
+    /* ── DARK CONTACT BUTTONS (preserved from dark theme) ── */
+    .contact-block {
+      background: #0f0f18; border-radius: 14px; padding: 18px;
+      border: 1px solid #2a2a40; margin-bottom: 0;
     }
-    .contact-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+    .contact-block-title {
+      font-family: var(--mono); font-size: 0.68rem; color: #555570;
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
     }
-    .contact-card-title {
-      font-family: var(--mono); font-size: 0.75rem; color: var(--text-dimmer);
-      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
-    }
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
-    }
-    @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
-
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .contact-btn {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.85rem 1.1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-family: var(--mono); font-size: 0.82rem;
-      font-weight: 500;
-      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-      border: 1px solid transparent;
-      cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 12px; border-radius: 8px; text-decoration: none;
+      font-family: var(--mono); font-size: 0.78rem; font-weight: 500;
+      border: 1px solid transparent; cursor: pointer; transition: transform 0.15s, background 0.15s;
     }
-    .contact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.4); }
+    .contact-btn:hover { transform: translateY(-2px); }
+    .contact-btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    .btn-wa   { background:#1a2e1a; border-color:#25d366; color:#25d366; }
+    .btn-wab  { background:#1a2414; border-color:#128c7e; color:#25d366; }
+    .btn-ph1  { background:#1a1a2e; border-color:#7c5cfc; color:#7c5cfc; }
+    .btn-ph2  { background:#1e1a1a; border-color:#e05555; color:#e05555; }
+    .btn-li   { background:#0a1929; border-color:#0077b5; color:#0da7e0; grid-column:1/-1; }
+    .btn-label { display:flex; flex-direction:column; }
+    .btn-label span:first-child { font-size:0.6rem; opacity:0.65; letter-spacing:0.07em; }
+    .btn-label span:last-child  { font-size:0.8rem; font-weight:600; }
 
-    .btn-wa {
-      background: #1a2e1a;
-      border-color: #25d366;
-      color: #25d366;
-    }
-    .btn-wa:hover { background: #1f3a1f; }
-
-    .btn-wa-biz {
-      background: #1a2414;
-      border-color: #128c7e;
-      color: #25d366;
-    }
-    .btn-wa-biz:hover { background: #1e2e18; }
-
-    .btn-phone {
-      background: #1a1a2e;
-      border-color: var(--accent2);
-      color: var(--accent2);
-    }
-    .btn-phone:hover { background: #201a38; }
-
-    .btn-phone2 {
-      background: #1e1a1a;
-      border-color: var(--accent3);
-      color: var(--accent3);
-    }
-    .btn-phone2:hover { background: #261e1e; }
-
-    .btn-linkedin {
-      background: #0a1929;
-      border-color: #0077b5;
-      color: #0da7e0;
-      grid-column: 1 / -1;
-    }
-    .btn-linkedin:hover { background: #0d2035; }
-
-    .contact-btn svg {
-      width: 20px; height: 20px; flex-shrink: 0; fill: currentColor;
-    }
-    .btn-label { display: flex; flex-direction: column; }
-    .btn-label span:first-child { font-size: 0.65rem; opacity: 0.7; letter-spacing: 0.08em; }
-    .btn-label span:last-child { font-size: 0.85rem; font-weight: 600; }
-
-    /* ── MORE INFO DIVIDER ── */
-    .more-divider {
-      display: flex; align-items: center; gap: 1rem;
-      max-width: 700px; margin: 3rem auto 0;
-      font-family: var(--mono); font-size: 0.75rem; color: var(--text-dimmer);
-      letter-spacing: 0.1em;
-    }
-    .more-divider::before, .more-divider::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
+    /* ── VISUAL PANEL ── */
+    .visual-panel {
+      border-radius: var(--radius); overflow: hidden;
+      display: flex; flex-direction: column; min-height: 560px;
     }
 
-    /* ── SECTION BASE ── */
-    section {
-      max-width: 1100px; margin: 0 auto;
-      padding: 5rem 2rem;
+    /* TOP: official profile photo */
+    .visual-top {
+      flex: 1; position: relative; overflow: hidden; min-height: 280px;
+      background: #f0f0f0;
     }
-    .section-label {
-      font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
-      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.6rem;
+    .visual-top img.profile-img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center top; display: block;
     }
-    .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700;
-      margin-bottom: 3rem; color: var(--text);
+    /* placeholder when no photo yet */
+    .visual-top .photo-placeholder {
+      width: 100%; height: 100%; min-height: 280px;
+      background: #e8f0ec;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; font-size: 52px;
     }
+    .visual-top .photo-placeholder span {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+    }
+
+    /* BOTTOM: WOQOD work photo */
+    .visual-bottom {
+      position: relative; overflow: hidden; height: 240px; flex-shrink: 0;
+    }
+    .visual-bottom img.work-img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center 20%; display: block;
+    }
+    .visual-bottom::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(3,20,13,.55), transparent 60%);
+    }
+    .visual-bottom .work-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(155deg, #0e2218, #1a3a2a);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; font-size: 36px;
+    }
+    .visual-bottom .work-placeholder span {
+      font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.3);
+    }
+    .work-label {
+      position: absolute; left: 14px; bottom: 14px; z-index: 2;
+      background: rgba(255,255,255,0.92); border-radius: 10px;
+      padding: 8px 12px; display: flex; align-items: center; gap: 8px;
+      backdrop-filter: blur(8px); box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    }
+    .work-label img { width: 28px; height: 28px; object-fit: contain; }
+    .work-label-text { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+    .work-label-text span { display: block; font-size: 10px; color: var(--muted); font-weight: 500; }
+
+    /* ── QUICK LINKS ── */
+    .quick { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin: 20px 0; }
+    @media(max-width:640px){ .quick { grid-template-columns: repeat(2,1fr); } }
+    .quick a {
+      padding: 16px; border-radius: 16px; background: var(--card);
+      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      font-weight: 700; text-align: center; font-size: 14px; color: var(--ink);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .quick a:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .quick a span { display: block; color: var(--muted); font-size: 11px; font-weight: 600; margin-top: 3px; }
+
+    /* ── SUDAN SECTION (preserved from dark theme, adapted) ── */
+    .sudan-wrap {
+      border-radius: var(--radius); overflow: hidden; margin: 0 0 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .sudan-flag-bar { display: flex; height: 5px; }
+    .sudan-flag-bar span:nth-child(1) { flex:1; background:#d21034; }
+    .sudan-flag-bar span:nth-child(2) { flex:1; background:#cccccc; }
+    .sudan-flag-bar span:nth-child(3) { flex:1; background:#111111; }
+    .sudan-inner {
+      background: linear-gradient(135deg,#0f1a14 0%,#0a1a0a 60%,#0f1a14 100%);
+      padding: 22px 24px; display: flex; align-items: center; gap: 20px;
+      position: relative; overflow: hidden;
+    }
+    .sudan-inner::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse at 10% 50%, rgba(0,150,50,.08) 0%, transparent 60%);
+    }
+    .sudan-tri {
+      position:absolute; right:0; top:0; bottom:0; width:55px;
+      background:
+        linear-gradient(to bottom right,#009a44 50%,transparent 50%),
+        linear-gradient(to top right,#009a44 50%,transparent 50%);
+      background-size:55px 50%,55px 50%;
+      background-position:top right,bottom right;
+      background-repeat:no-repeat; opacity:0.3;
+    }
+    .sudan-emblem {
+      width:100px; height:100px; flex-shrink:0; border-radius:50%;
+      background:#fff; border:3px solid rgba(0,192,80,.45);
+      box-shadow:0 0 28px rgba(0,150,50,.35),0 0 0 6px rgba(0,150,50,.08);
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden; padding:6px;
+    }
+    .sudan-emblem img { width:100%; height:100%; object-fit:contain; }
+    .sudan-text { flex:1; position:relative; z-index:1; }
+    .sudan-nat  { font-family:var(--mono); font-size:0.68rem; color:#00c060; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:4px; }
+    .sudan-name { font-size:1.3rem; font-weight:800; color:#fff; margin-bottom:3px; }
+    .sudan-name span { color:#00c060; }
+    .sudan-motto { font-family:var(--mono); font-size:0.78rem; color:rgba(255,255,255,.4); font-style:italic; margin-bottom:14px; }
+    .sudan-wiki {
+      display:inline-flex; align-items:center; gap:7px;
+      padding:7px 14px; background:rgba(0,150,50,.12);
+      border:1px solid rgba(0,150,50,.3); border-radius:7px;
+      font-family:var(--mono); font-size:0.72rem; color:#00c060;
+      text-decoration:none; transition:all 0.2s;
+    }
+    .sudan-wiki:hover { background:rgba(0,150,50,.22); border-color:#00c060; transform:translateY(-1px); }
+    .sudan-wiki svg { width:13px; height:13px; fill:currentColor; }
+    @media(max-width:520px){
+      .sudan-inner{flex-direction:column; text-align:center; gap:14px;}
+      .sudan-tri{display:none;}
+    }
+
+    /* ── SECTION ── */
+    .section { margin-top: 20px; }
+    .section-card { padding: 32px; }
+    .eyebrow { font-weight: 800; color: var(--green); letter-spacing: .08em; text-transform: uppercase; font-size: 11px; }
+    .section-title { font-size: 28px; font-weight: 800; line-height: 1.1; margin: 5px 0 22px; letter-spacing: -0.03em; }
 
     /* ── ABOUT ── */
-    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
-    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
-    .about-text p { color: var(--text-dim); margin-bottom: 1rem; font-size: 1.05rem; }
-    .about-text p strong { color: var(--text); }
-    .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
-    .sidebar-block { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; }
-    .sidebar-block h4 { font-family: var(--mono); font-size: 0.7rem; color: var(--text-dimmer); letter-spacing: 0.15em; margin-bottom: 0.8rem; }
-    .sidebar-block p, .sidebar-block li { font-size: 0.9rem; color: var(--text-dim); }
-    .sidebar-block ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
-    .sidebar-block li::before { content: '→ '; color: var(--accent); font-family: var(--mono); }
+    .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
+    @media(max-width:680px){ .about-grid { grid-template-columns: 1fr; } }
+    .about-grid p { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
+    .about-grid p strong { color: var(--ink); }
+    .arabic-box {
+      font-family: var(--arabic); direction: rtl; text-align: right;
+      background: var(--green-light); border: 1px solid #cce5d8;
+      border-radius: 14px; padding: 18px; color: #1e3a2a; font-size: 15px; margin-top: 8px;
+    }
+    .arabic-box strong { color: var(--green-dark); }
+    .info-list { display: flex; flex-direction: column; gap: 0; }
+    .info-row {
+      display: flex; justify-content: space-between; gap: 12px;
+      padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 13.5px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row b { color: var(--ink); }
+    .info-row span { color: var(--muted); text-align: right; }
+
+    /* ── HIGHLIGHTS GRID ── */
+    .highlights { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    @media(max-width:680px){ .highlights { grid-template-columns: 1fr; } }
+    .hl-item {
+      padding: 20px; border: 1px solid var(--border); border-radius: 16px;
+      background: linear-gradient(180deg,#fff,#f8fcfa); transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .hl-item:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .hl-icon { font-size: 24px; margin-bottom: 10px; }
+    .hl-item h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .hl-item p  { font-size: 13px; color: var(--muted); }
 
     /* ── SKILLS ── */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
-    .skill-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
+    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    @media(max-width:680px){ .skills-grid { grid-template-columns: 1fr 1fr; } }
+    .sk-card {
+      padding: 18px; border: 1px solid var(--border); border-radius: 16px;
+      background: var(--card); transition: border-color 0.2s, transform 0.2s;
     }
-    .skill-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
-    .skill-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
-    .skill-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .skill-tag {
-      font-family: var(--mono); font-size: 0.7rem; padding: 0.2rem 0.55rem;
-      background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; color: var(--text-dim);
+    .sk-card:hover { border-color: var(--green); transform: translateY(-2px); }
+    .sk-icon { font-size: 22px; margin-bottom: 8px; }
+    .sk-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .sk-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .sk-tag {
+      font-size: 11px; padding: 2px 8px; border-radius: 4px;
+      background: var(--bg2); border: 1px solid var(--border); color: var(--muted);
     }
 
     /* ── CERTS ── */
-    .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1rem; }
+    .cert-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 20px; }
+    @media(max-width:680px){ .cert-grid { grid-template-columns: 1fr 1fr; } }
     .cert-item {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
-      padding: 0.9rem 1.1rem; display: flex; align-items: center; gap: 0.7rem;
-      font-size: 0.9rem;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+      padding: 10px 12px; font-size: 13px; font-weight: 600;
     }
-    .cert-item span:first-child { font-size: 1.2rem; }
 
     /* ── EXPERIENCE ── */
-    .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+    .exp-list { display: flex; flex-direction: column; gap: 14px; }
     .exp-item {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.5rem; display: grid; grid-template-columns: auto 1fr; gap: 0 1.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px; display: grid;
+      grid-template-columns: auto 1fr; gap: 0 18px;
     }
-    .exp-date { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); white-space: nowrap; padding-top: 0.2rem; }
-    .exp-role { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .exp-company { font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.7rem; }
-    .exp-desc { font-size: 0.93rem; color: var(--text-dim); margin-bottom: 0.8rem; }
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .exp-tag {
-      font-family: var(--mono); font-size: 0.68rem; padding: 0.2rem 0.5rem;
-      background: var(--bg); border: 1px solid var(--border); border-radius: 3px; color: var(--text-dimmer);
+    .exp-date { font-family: var(--mono); font-size: 11px; color: var(--green); white-space: nowrap; padding-top: 3px; }
+    .exp-role { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .exp-co   { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .exp-desc { font-size: 13.5px; color: var(--muted); margin-bottom: 10px; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .exp-tag  {
+      font-size: 11px; padding: 2px 8px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 4px; color: var(--dimmer);
     }
 
     /* ── PROJECTS ── */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.5rem; }
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
+    .proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    @media(max-width:680px){ .proj-grid { grid-template-columns: 1fr; } }
+    .proj-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px; transition: border-color 0.2s, transform 0.2s;
     }
-    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .project-icon { font-size: 2rem; margin-bottom: 0.8rem; }
-    .project-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.6rem; }
-    .project-card p { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem; }
-    .project-status {
-      display: inline-block; font-family: var(--mono); font-size: 0.65rem; padding: 0.2rem 0.5rem;
-      border-radius: 3px; margin-bottom: 0.8rem;
+    .proj-card:hover { border-color: var(--green); transform: translateY(-2px); }
+    .proj-icon { font-size: 26px; margin-bottom: 8px; }
+    .proj-status {
+      display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: 4px; margin-bottom: 6px;
+      font-family: var(--mono); letter-spacing: 0.05em;
     }
-    .status-progress { background: rgba(0,255,157,0.1); color: var(--accent); border: 1px solid rgba(0,255,157,0.3); }
-    .status-done { background: rgba(124,92,252,0.1); color: var(--accent2); border: 1px solid rgba(124,92,252,0.3); }
+    .st-prog { background:rgba(11,122,75,.1); color:var(--green); border:1px solid rgba(11,122,75,.25); }
+    .st-done { background:rgba(124,92,252,.1); color:#7c5cfc; border:1px solid rgba(124,92,252,.25); }
+    .proj-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .proj-card p  { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
 
     /* ── EDUCATION ── */
-    .edu-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .edu-list { display: flex; flex-direction: column; gap: 12px; }
     .edu-item {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 18px 22px; display: flex; align-items: center; gap: 14px;
     }
-    .edu-icon { font-size: 1.8rem; }
-    .edu-degree { font-size: 1rem; font-weight: 600; }
-    .edu-school { font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim); }
-    .edu-year { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-top: 0.2rem; }
+    .edu-icon   { font-size: 26px; }
+    .edu-degree { font-size: 15px; font-weight: 700; }
+    .edu-school { font-size: 13px; color: var(--muted); }
+    .edu-year   { font-family: var(--mono); font-size: 11px; color: var(--green); margin-top: 3px; }
 
-    /* ── FOOTER CONTACT ── */
-    #contact {
-      text-align: center; padding-top: 5rem; padding-bottom: 5rem;
-      border-top: 1px solid var(--border);
+    /* ── FOOTER ── */
+    footer {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 32px; text-align: center; margin-top: 20px;
     }
-    #contact .section-title { margin-bottom: 0.5rem; }
-    #contact .sub { color: var(--text-dim); margin-bottom: 2.5rem; font-size: 1.05rem; }
-    .footer-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 3rem; }
-    .footer-btn {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.8rem 1.4rem; border-radius: 8px;
-      font-family: var(--mono); font-size: 0.82rem; font-weight: 600;
-      text-decoration: none; border: 1px solid var(--border);
-      color: var(--text); background: var(--surface);
+    footer img { width: 64px; height: 64px; object-fit: contain; margin-bottom: 14px; }
+    footer .ft-name { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+    footer .ft-sub  { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .footer-contacts {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px;
+    }
+    .ft-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 16px; border-radius: 10px; font-size: 13px; font-weight: 700;
+      border: 1px solid var(--border); background: var(--bg); color: var(--ink);
       transition: all 0.2s;
     }
-    .footer-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .footer-copy { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dimmer); }
-    .footer-copy span { color: var(--accent); }
+    .ft-btn:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
+    footer .copy { font-size: 12px; color: var(--dimmer); }
+    footer .copy span { color: var(--green); }
 
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-    /* ── NOISE TEXTURE ── */
-    body::after {
-      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    @media (max-width: 600px) {
-      nav { padding: 0.8rem 1rem; }
+    @media(max-width:600px){
+      .intro { padding: 24px; }
+      .section-card { padding: 22px; }
+      nav { padding: 0 12px; }
       .nav-links { gap: 1rem; }
-      .hero { padding: 6rem 1rem 3rem; }
-      section { padding: 3rem 1rem; }
       .exp-item { grid-template-columns: 1fr; }
+      .skills-grid, .proj-grid, .cert-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -312,384 +389,283 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">mohanad.dev</div>
-  <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#projects">lab</a></li>
-    <li><a href="#experience">exp</a></li>
-    <li><a href="#contact">contact</a></li>
-  </ul>
+  <div class="nav-inner">
+    <div class="nav-logo">mohanad.dev</div>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#projects">lab</a></li>
+      <li><a href="#experience">exp</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-tag">$ whoami</div>
-  <h1>Mohanad <span>the Maker.</span></h1>
-  <div class="hero-sub">→ IT Engineer · Electronics Hobbyist · <span>RF Explorer</span></div>
-  <p class="hero-desc">
-    9+ years in IT infrastructure &amp; security — but I'm most alive when I'm
-    <strong>building things from scratch.</strong> Soldering iron in one hand, Linux terminal in the other.
-  </p>
-  <div class="badge-row">
-    <span class="badge">🛸 UAV Hobbyist</span>
-    <span class="badge">📡 RF &amp; Radio</span>
-    <span class="badge">🐬 Flipper Zero</span>
-    <span class="badge">🛡️ CTF Research</span>
-    <span class="badge">🐧 Linux-first</span>
-    <span class="badge">✈️ Traveller</span>
-    <span class="badge">🏐 Volleyball</span>
-    <span class="badge">🇸🇩 Sudanese</span>
-  </div>
+<div class="page">
 
-  <!-- ── CONTACT CARD ── -->
-  <div class="contact-card">
-    <div class="contact-card-title">// get in touch</div>
-    <div class="contact-grid">
+  <!-- ── HERO ── -->
+  <div class="hero-grid">
 
-      <!-- WhatsApp Personal -->
-      <a class="contact-btn btn-wa" href="https://wa.me/97466926299" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span class="btn-label">
-          <span>WhatsApp</span>
-          <span>+974 6692 6299</span>
-        </span>
-      </a>
-
-      <!-- WhatsApp Business -->
-      <a class="contact-btn btn-wa-biz" href="https://wa.me/97470272762" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span class="btn-label">
-          <span>WhatsApp Business</span>
-          <span>+974 7027 2762</span>
-        </span>
-      </a>
-
-      <!-- Mobile 1 -->
-      <a class="contact-btn btn-phone" href="tel:+97470272762">
-        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-        <span class="btn-label">
-          <span>Mobile</span>
-          <span>+974 7027 2762</span>
-        </span>
-      </a>
-
-      <!-- Mobile 2 -->
-      <a class="contact-btn btn-phone2" href="tel:+97466926299">
-        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-        <span class="btn-label">
-          <span>Mobile 2</span>
-          <span>+974 6692 6299</span>
-        </span>
-      </a>
-
-      <!-- LinkedIn -->
-      <a class="contact-btn btn-linkedin" href="https://linkedin.com/in/mohanad-dirar/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        <span class="btn-label">
-          <span>LinkedIn Profile</span>
-          <span>linkedin.com/in/mohanad-dirar</span>
-        </span>
-      </a>
-
-    </div><!-- /contact-grid -->
-  </div><!-- /contact-card -->
-
-  <div class="more-divider">scroll down for full profile</div>
-</div><!-- /hero -->
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">// about me</div>
-  <div class="section-title">The human behind the terminal</div>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm an <strong>Electronic &amp; Telecom engineer turned IT security specialist</strong> who never stopped being a maker at heart. During the day I handle serious IT infrastructure work — hardening systems, managing incidents, and keeping things secure.</p>
-      <p>After hours? I'm in my element. I enjoy <strong>building UAV prototypes</strong>, experimenting with RF signals and radio systems, and participating in <strong>cybersecurity CTF competitions</strong>. I once built a working FM transceiver from scratch — not because I had to, just because I could.</p>
-      <p>I believe the best solutions come from <strong>thinking like both an engineer and a researcher</strong> — understanding systems deeply, and being creative enough to improve them.</p>
-    </div>
-    <div class="about-sidebar">
-      <div class="sidebar-block">
-        <h4>CONTACT INFO</h4>
-        <ul>
-          <li>mohneddirar@hotmail.com</li>
-          <li>+974 7027 2762</li>
-          <li>+974 6692 6299</li>
-          <li>Doha, Qatar 📍</li>
-        </ul>
+    <!-- LEFT: Intro -->
+    <div class="card intro">
+      <div class="topline">🇸🇩 Proudly Sudanese · Based in Doha, Qatar</div>
+      <h1>Mohanad M <span class="accent">Dirar</span></h1>
+      <div class="role">IT Engineer · Electronics Hobbyist · RF Explorer</div>
+      <p class="summary">9+ years in IT infrastructure &amp; security — but I'm most alive when I'm <strong>building things from scratch.</strong> Soldering iron in one hand, Linux terminal in the other.</p>
+      <div class="badge-row">
+        <span class="badge">🛸 UAV Hobbyist</span>
+        <span class="badge">📡 RF &amp; Radio</span>
+        <span class="badge">🐬 Flipper Zero</span>
+        <span class="badge">🛡️ CTF Research</span>
+        <span class="badge">🐧 Linux-first</span>
+        <span class="badge">✈️ Traveller</span>
+        <span class="badge">🏐 Volleyball</span>
       </div>
-      <div class="sidebar-block">
-        <h4>CURRENTLY INTO</h4>
-        <ul>
-          <li>UAV &amp; drones 🛸</li>
-          <li>RF &amp; radio 📡</li>
-          <li>Flipper Zero 🐬</li>
-          <li>CTF challenges 🛡️</li>
-          <li>Linux tinkering 🐧</li>
-          <li>FM transceivers 📻</li>
-        </ul>
-      </div>
-      <div class="sidebar-block">
-        <h4>LANGUAGES</h4>
-        <ul>
-          <li>🇸🇩 Arabic — Native</li>
-          <li>🇬🇧 English — Professional</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">// technical skills</div>
-  <div class="section-title">What I bring to the table</div>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-icon">🔒</div>
-      <h3>Security Operations</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Vulnerability Assessment</span>
-        <span class="skill-tag">Incident Response</span>
-        <span class="skill-tag">System Hardening</span>
-        <span class="skill-tag">Pentesting</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🌐</div>
-      <h3>Networking</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">CCNA</span>
-        <span class="skill-tag">DHCP / DNS</span>
-        <span class="skill-tag">IP Addressing</span>
-        <span class="skill-tag">Wireshark</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">📡</div>
-      <h3>RF &amp; Telecom</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">RF Systems</span>
-        <span class="skill-tag">Signal Analysis</span>
-        <span class="skill-tag">WiFi Security</span>
-        <span class="skill-tag">VoIP / Asterisk</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">☁️</div>
-      <h3>Cloud &amp; Infrastructure</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Azure AZ-104</span>
-        <span class="skill-tag">AZ-900</span>
-        <span class="skill-tag">Microsoft 365</span>
-        <span class="skill-tag">Active Directory</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🐧</div>
-      <h3>Operating Systems</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Linux (Red Hat)</span>
-        <span class="skill-tag">Debian</span>
-        <span class="skill-tag">Windows Server</span>
-        <span class="skill-tag">macOS</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🔧</div>
-      <h3>Hardware &amp; Tools</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Electronics</span>
-        <span class="skill-tag">Flipper Zero</span>
-        <span class="skill-tag">Soldering</span>
-        <span class="skill-tag">Fiber Optic</span>
-        <span class="skill-tag">ManageEngine</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Certifications -->
-  <div class="section-label" style="margin-top:3rem;">// certifications</div>
-  <div class="cert-list" style="margin-top:1rem;">
-    <div class="cert-item"><span>🛡️</span><span>CompTIA Security+</span></div>
-    <div class="cert-item"><span>🔴</span><span>Red Hat Linux</span></div>
-    <div class="cert-item"><span>🌐</span><span>CCNA 200-301</span></div>
-    <div class="cert-item"><span>☁️</span><span>Azure Administrator AZ-104</span></div>
-    <div class="cert-item"><span>☁️</span><span>Azure Fundamentals AZ-900</span></div>
-    <div class="cert-item"><span>📋</span><span>ITIL Foundation V4</span></div>
-    <div class="cert-item"><span>🪟</span><span>Microsoft 365 Fundamentals</span></div>
-    <div class="cert-item"><span>🔍</span><span>Google IT Support Specialist</span></div>
-    <div class="cert-item"><span>💡</span><span>Fiber Optic Cabling</span></div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">// experience</div>
-  <div class="section-title">9+ years of getting things done</div>
-  <div class="exp-list">
-    <div class="exp-item">
-      <div class="exp-date">2020 → present</div>
-      <div>
-        <div class="exp-role">IT Service Desk Team Lead</div>
-        <div class="exp-company">Energy &amp; Utilities Sector · Qatar</div>
-        <div class="exp-desc">Leading a technical support team, managing enterprise IT infrastructure, handling L1/L2 security incidents, and driving system hardening and patch management initiatives.</div>
-        <div class="exp-tags">
-          <span class="exp-tag">team lead</span>
-          <span class="exp-tag">security ops</span>
-          <span class="exp-tag">ITSM</span>
-          <span class="exp-tag">ManageEngine</span>
+      <!-- DARK CONTACT BUTTONS -->
+      <div class="contact-block">
+        <div class="contact-block-title">// get in touch</div>
+        <div class="contact-grid">
+          <a class="contact-btn btn-wa" href="https://wa.me/97466926299" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span class="btn-label"><span>WhatsApp</span><span>+974 6692 6299</span></span>
+          </a>
+          <a class="contact-btn btn-wab" href="https://wa.me/97470272762" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span class="btn-label"><span>WhatsApp Business</span><span>+974 7027 2762</span></span>
+          </a>
+          <a class="contact-btn btn-ph1" href="tel:+97470272762">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            <span class="btn-label"><span>Mobile</span><span>+974 7027 2762</span></span>
+          </a>
+          <a class="contact-btn btn-ph2" href="tel:+97466926299">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            <span class="btn-label"><span>Mobile 2</span><span>+974 6692 6299</span></span>
+          </a>
+          <a class="contact-btn btn-li" href="https://linkedin.com/in/mohanad-dirar/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span class="btn-label"><span>LinkedIn Profile</span><span>linkedin.com/in/mohanad-dirar</span></span>
+          </a>
         </div>
       </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-date">2020 · short stint</div>
+
+    <!-- RIGHT: Visual panel — top: profile photo, bottom: WOQOD work photo -->
+    <div class="card visual-panel">
+
+      <!-- TOP: Official profile photo (white background) -->
+      <div class="visual-top">
+        <!-- When ready: replace placeholder with:
+        <img class="profile-img" src="assets/profile.jpg" alt="Mohanad M Dirar" />
+        -->
+        <img class="profile-img" src="DSC_0080.jpg" alt="Mohanad M Dirar" />
+      </div>
+
+      <!-- BOTTOM: WOQOD work photo -->
+      <div class="visual-bottom">
+        <!-- When ready: replace placeholder with:
+        <img class="work-img" src="assets/work.jpg" alt="Mohanad at WOQOD" />
+        -->
+        <img class="work-img" src="D2761328-DFCB-4331-B80A-EC759D7E79E0.png" alt="Mohanad at WOQOD" />
+        <div class="work-label">
+          <img src="Emblem_of_Sudan_svg.png" alt="WOQOD" style="border-radius:4px;" />
+          <div class="work-label-text">
+            WOQOD · Qatar Fuel
+            <span>Doha, Qatar 🇶🇦</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /hero-grid -->
+
+  <!-- ── QUICK LINKS ── -->
+  <div class="quick">
+    <a href="mailto:mohneddirar@hotmail.com">📧 Email<span>mohneddirar@hotmail.com</span></a>
+    <a href="tel:+97470272762">📞 Mobile<span>+974 7027 2762</span></a>
+    <a href="https://wa.me/97466926299" target="_blank" rel="noopener">💬 WhatsApp<span>+974 6692 6299</span></a>
+    <a href="https://linkedin.com/in/mohanad-dirar/" target="_blank" rel="noopener">💼 LinkedIn<span>/mohanad-dirar</span></a>
+  </div>
+
+  <!-- ── SUDAN SECTION ── -->
+  <div class="sudan-wrap">
+    <div class="sudan-flag-bar"><span></span><span></span><span></span></div>
+    <div class="sudan-inner">
+      <div class="sudan-tri"></div>
+      <div class="sudan-emblem">
+        <img src="Emblem_of_Sudan_svg.png" alt="Emblem of Sudan" />
+      </div>
+      <div class="sudan-text">
+        <div class="sudan-nat">🇸🇩 Nationality</div>
+        <div class="sudan-name">Sudanese <span>/ سوداني</span></div>
+        <div class="sudan-motto" style="font-size:1rem; color:rgba(255,255,255,.65); font-style:normal; font-family:var(--arabic); margin-bottom:6px;">النصر لنا</div>
+        <div class="sudan-motto">Victory is ours</div>
+      </div>
+    </div>
+    <div class="sudan-flag-bar"><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="section card section-card">
+    <div class="eyebrow">// about me</div>
+    <div class="section-title">The human behind the terminal</div>
+    <div class="about-grid">
       <div>
-        <div class="exp-role">IT Support Engineer</div>
-        <div class="exp-company">ICT Sector · Qatar</div>
-        <div class="exp-desc">End-user hardware/software support, network troubleshooting across DHCP, DNS, and IP environments, OS-level diagnostics on Windows, macOS and Linux.</div>
-        <div class="exp-tags">
-          <span class="exp-tag">networking</span>
-          <span class="exp-tag">support</span>
-          <span class="exp-tag">linux</span>
+        <p>I'm an <strong>Electronic &amp; Telecom engineer turned IT security specialist</strong> who never stopped being a maker at heart. During the day I handle serious IT infrastructure work — hardening systems, managing incidents, and keeping things secure.</p>
+        <p>After hours? I'm in my element — <strong>building UAV prototypes</strong>, experimenting with RF signals, and solving <strong>CTF challenges on Hack The Box</strong>. I once built a working FM transceiver from scratch, not because I had to, just because I could.</p>
+        <div class="arabic-box">
+          <strong>السودان في القلب</strong><br>
+          مهندس سوداني مقيم في الدوحة، أجمع بين العمل المؤسسي في البنية التحتية لتقنية المعلومات وشغف حقيقي بالإلكترونيات وأنظمة الراديو والطائرات بدون طيار.
+        </div>
+      </div>
+      <div class="info-list">
+        <div class="info-row"><b>Location</b><span>Doha, Qatar 📍</span></div>
+        <div class="info-row"><b>Nationality</b><span>🇸🇩 Sudanese</span></div>
+        <div class="info-row"><b>Languages</b><span>Arabic &amp; English</span></div>
+        <div class="info-row"><b>Email</b><span>mohneddirar@hotmail.com</span></div>
+        <div class="info-row"><b>Phone</b><span>+974 7027 2762</span></div>
+        <div class="info-row"><b>Currently</b><span>Fleet Ops · ICT · Maker</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HIGHLIGHTS ── -->
+  <section class="section card section-card">
+    <div class="eyebrow">// highlights</div>
+    <div class="section-title">Areas I work in</div>
+    <div class="highlights">
+      <div class="hl-item">
+        <div class="hl-icon">🚗</div>
+        <h3>Fleet &amp; Operations</h3>
+        <p>Vehicle records, permits, registration follow-up, Power Apps dashboards, and process improvement.</p>
+      </div>
+      <div class="hl-item">
+        <div class="hl-icon">☁️</div>
+        <h3>ICT &amp; Automation</h3>
+        <p>Microsoft 365, SharePoint, Power Automate, Power Apps, workflow automation and ITSM.</p>
+      </div>
+      <div class="hl-item">
+        <div class="hl-icon">📡</div>
+        <h3>Engineering Interests</h3>
+        <p>Telecom, RF systems, UAV/drones, electronics, Flipper Zero, and CTF security research.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills" class="section card section-card">
+    <div class="eyebrow">// technical skills</div>
+    <div class="section-title">What I bring to the table</div>
+    <div class="skills-grid">
+      <div class="sk-card"><div class="sk-icon">🔒</div><h3>Security Operations</h3><div class="sk-tags"><span class="sk-tag">Vulnerability Assessment</span><span class="sk-tag">Incident Response</span><span class="sk-tag">System Hardening</span><span class="sk-tag">Pentesting</span></div></div>
+      <div class="sk-card"><div class="sk-icon">🌐</div><h3>Networking</h3><div class="sk-tags"><span class="sk-tag">CCNA</span><span class="sk-tag">DHCP / DNS</span><span class="sk-tag">IP Addressing</span><span class="sk-tag">Wireshark</span></div></div>
+      <div class="sk-card"><div class="sk-icon">📡</div><h3>RF &amp; Telecom</h3><div class="sk-tags"><span class="sk-tag">RF Systems</span><span class="sk-tag">Signal Analysis</span><span class="sk-tag">WiFi Security</span><span class="sk-tag">VoIP / Asterisk</span></div></div>
+      <div class="sk-card"><div class="sk-icon">☁️</div><h3>Cloud &amp; Infrastructure</h3><div class="sk-tags"><span class="sk-tag">Azure AZ-104</span><span class="sk-tag">AZ-900</span><span class="sk-tag">Microsoft 365</span><span class="sk-tag">Active Directory</span></div></div>
+      <div class="sk-card"><div class="sk-icon">🐧</div><h3>Operating Systems</h3><div class="sk-tags"><span class="sk-tag">Linux Red Hat</span><span class="sk-tag">Debian</span><span class="sk-tag">Windows Server</span><span class="sk-tag">macOS</span></div></div>
+      <div class="sk-card"><div class="sk-icon">🔧</div><h3>Hardware &amp; Tools</h3><div class="sk-tags"><span class="sk-tag">Electronics</span><span class="sk-tag">Flipper Zero</span><span class="sk-tag">Soldering</span><span class="sk-tag">Fiber Optic</span><span class="sk-tag">ManageEngine</span></div></div>
+    </div>
+    <div class="eyebrow" style="margin-top:24px;">// certifications</div>
+    <div class="cert-grid">
+      <div class="cert-item">🛡️ CompTIA Security+</div>
+      <div class="cert-item">🔴 Red Hat Linux</div>
+      <div class="cert-item">🌐 CCNA 200-301</div>
+      <div class="cert-item">☁️ Azure AZ-104</div>
+      <div class="cert-item">☁️ Azure AZ-900</div>
+      <div class="cert-item">📋 ITIL Foundation V4</div>
+      <div class="cert-item">🪟 Microsoft 365</div>
+      <div class="cert-item">🔍 Google IT Support</div>
+      <div class="cert-item">💡 Fiber Optic Cabling</div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience" class="section card section-card">
+    <div class="eyebrow">// experience</div>
+    <div class="section-title">9+ years of getting things done</div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-date">2020 → present</div>
+        <div>
+          <div class="exp-role">IT Service Desk Team Lead</div>
+          <div class="exp-co">Energy &amp; Utilities Sector · Qatar (WOQOD)</div>
+          <div class="exp-desc">Leading a technical support team, managing enterprise IT infrastructure, handling L1/L2 security incidents, driving system hardening and patch management initiatives. Also supporting Fleet Services with Power Apps, Power Automate, and SharePoint automation.</div>
+          <div class="exp-tags"><span class="exp-tag">team lead</span><span class="exp-tag">security ops</span><span class="exp-tag">ITSM</span><span class="exp-tag">ManageEngine</span><span class="exp-tag">Power Platform</span></div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2020 · short stint</div>
+        <div>
+          <div class="exp-role">IT Support Engineer</div>
+          <div class="exp-co">ICT Sector · Qatar</div>
+          <div class="exp-desc">End-user hardware/software support, network troubleshooting across DHCP, DNS, and IP environments, OS-level diagnostics on Windows, macOS and Linux.</div>
+          <div class="exp-tags"><span class="exp-tag">networking</span><span class="exp-tag">support</span><span class="exp-tag">linux</span></div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2018 → 2019</div>
+        <div>
+          <div class="exp-role">Technical Support Engineer</div>
+          <div class="exp-co">Research &amp; Tech Sector · Sudan</div>
+          <div class="exp-desc">VoIP setup and configuration (Asterisk/Cisco), system administration with LDAP and Active Directory, cross-platform OS troubleshooting and infrastructure maintenance.</div>
+          <div class="exp-tags"><span class="exp-tag">VoIP</span><span class="exp-tag">sysadmin</span><span class="exp-tag">LDAP</span><span class="exp-tag">telecom</span></div>
         </div>
       </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-date">2018 → 2019</div>
-      <div>
-        <div class="exp-role">Technical Support Engineer</div>
-        <div class="exp-company">Research &amp; Tech Sector · Sudan</div>
-        <div class="exp-desc">VoIP setup and configuration (Asterisk/Cisco), system administration with LDAP and Active Directory, cross-platform OS troubleshooting and infrastructure maintenance.</div>
-        <div class="exp-tags">
-          <span class="exp-tag">VoIP</span>
-          <span class="exp-tag">sysadmin</span>
-          <span class="exp-tag">LDAP</span>
-          <span class="exp-tag">telecom</span>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects" class="section card section-card">
+    <div class="eyebrow">// hobby lab</div>
+    <div class="section-title">Things I build for fun 🔧</div>
+    <div class="proj-grid">
+      <div class="proj-card"><div class="proj-icon">🛸</div><span class="proj-status st-prog">in progress</span><h3>UAV / Drone Build</h3><p>Custom UAV from components — flight controllers, ESCs, and RF telemetry links.</p><div class="sk-tags"><span class="sk-tag">electronics</span><span class="sk-tag">RF</span><span class="sk-tag">embedded</span></div></div>
+      <div class="proj-card"><div class="proj-icon">📻</div><span class="proj-status st-done">completed</span><h3>FM Transceiver (DIY)</h3><p>Built a working FM transceiver from scratch — RF modulation, signal propagation, antenna design.</p><div class="sk-tags"><span class="sk-tag">RF</span><span class="sk-tag">telecom</span><span class="sk-tag">hardware</span></div></div>
+      <div class="proj-card"><div class="proj-icon">🛡️</div><span class="proj-status st-prog">ongoing</span><h3>CTF &amp; Security Research</h3><p>Hack The Box challenges — privilege escalation, network analysis, wireless security.</p><div class="sk-tags"><span class="sk-tag">CTF</span><span class="sk-tag">linux</span><span class="sk-tag">HTB</span></div></div>
+      <div class="proj-card"><div class="proj-icon">🐬</div><span class="proj-status st-prog">daily driver</span><h3>Flipper Zero Projects</h3><p>RF signal exploration, IR protocol research, and sub-GHz communications.</p><div class="sk-tags"><span class="sk-tag">RF</span><span class="sk-tag">sub-GHz</span><span class="sk-tag">IR</span></div></div>
+      <div class="proj-card"><div class="proj-icon">🖥️</div><span class="proj-status st-done">completed</span><h3>PXE Boot Infrastructure</h3><p>Network boot environment for automated OS provisioning across enterprise endpoints.</p><div class="sk-tags"><span class="sk-tag">PXE</span><span class="sk-tag">linux</span><span class="sk-tag">networking</span></div></div>
+      <div class="proj-card"><div class="proj-icon">🏢</div><span class="proj-status st-done">completed</span><h3>Data Center Build</h3><p>End-to-end setup — fiber optic runs, server rack commissioning, full network config.</p><div class="sk-tags"><span class="sk-tag">fiber optic</span><span class="sk-tag">networking</span></div></div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section class="section card section-card">
+    <div class="eyebrow">// education</div>
+    <div class="section-title">The official stuff</div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-degree">Bachelor's in Computer Science &amp; IT</div>
+          <div class="edu-school">Sudan Open University · Faculty of Computer Science</div>
+          <div class="edu-year">Graduated 2024</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-icon">⚡</div>
+        <div>
+          <div class="edu-degree">Diploma — Electronic &amp; Telecom Engineering</div>
+          <div class="edu-school">Sudan · Where the hardware obsession started</div>
+          <div class="edu-year">Graduated 2016</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PROJECTS / LAB -->
-<section id="projects">
-  <div class="section-label">// hobby lab</div>
-  <div class="section-title">Things I build for fun 🔧</div>
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-icon">🛸</div>
-      <span class="project-status status-progress">in progress</span>
-      <h3>UAV / Drone Hobby Build</h3>
-      <p>Designing and assembling a custom UAV from components — exploring flight controllers, ESCs, and RF telemetry links.</p>
-      <div class="skill-tags">
-        <span class="skill-tag">electronics</span>
-        <span class="skill-tag">RF</span>
-        <span class="skill-tag">embedded</span>
-      </div>
+  <!-- ── FOOTER CONTACT ── -->
+  <footer id="contact">
+    <img src="Emblem_of_Sudan_svg.png" alt="Sudan emblem" />
+    <div class="ft-name">Mohanad M Dirar</div>
+    <div class="ft-sub">IT Engineer · Maker · Doha, Qatar 🇸🇩</div>
+    <div class="footer-contacts">
+      <a class="ft-btn" href="mailto:mohneddirar@hotmail.com">📧 mohneddirar@hotmail.com</a>
+      <a class="ft-btn" href="https://wa.me/97466926299" target="_blank">💬 WhatsApp +974 6692 6299</a>
+      <a class="ft-btn" href="https://wa.me/97470272762" target="_blank">💼 WA Business +974 7027 2762</a>
+      <a class="ft-btn" href="tel:+97470272762">📞 +974 7027 2762</a>
+      <a class="ft-btn" href="https://linkedin.com/in/mohanad-dirar/" target="_blank">🔗 LinkedIn</a>
     </div>
-    <div class="project-card">
-      <div class="project-icon">📻</div>
-      <span class="project-status status-done">completed</span>
-      <h3>FM Transceiver (DIY)</h3>
-      <p>Built a working FM transceiver from scratch — explored RF modulation, signal propagation, and antenna design.</p>
-      <div class="skill-tags">
-        <span class="skill-tag">RF</span>
-        <span class="skill-tag">telecom</span>
-        <span class="skill-tag">hardware</span>
-        <span class="skill-tag">ham radio</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-icon">🛡️</div>
-      <span class="project-status status-progress">ongoing</span>
-      <h3>CTF &amp; Security Research</h3>
-      <p>Solving Capture The Flag challenges on Hack The Box — privilege escalation, network analysis, and wireless security.</p>
-      <div class="skill-tags">
-        <span class="skill-tag">CTF</span>
-        <span class="skill-tag">research</span>
-        <span class="skill-tag">linux</span>
-        <span class="skill-tag">HTB</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-icon">🐬</div>
-      <span class="project-status status-progress">daily driver</span>
-      <h3>Flipper Zero Projects</h3>
-      <p>Daily-driving a Flipper Zero for RF signal exploration, IR protocol research, and sub-GHz communications.</p>
-      <div class="skill-tags">
-        <span class="skill-tag">RF</span>
-        <span class="skill-tag">sub-GHz</span>
-        <span class="skill-tag">IR</span>
-        <span class="skill-tag">hardware</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-icon">🖥️</div>
-      <span class="project-status status-done">completed</span>
-      <h3>PXE Boot Infrastructure</h3>
-      <p>Deployed a PXE network boot environment for automated OS provisioning across enterprise endpoints.</p>
-      <div class="skill-tags">
-        <span class="skill-tag">PXE</span>
-        <span class="skill-tag">linux</span>
-        <span class="skill-tag">networking</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-icon">🏢</div>
-      <span class="project-status status-done">completed</span>
-      <h3>Data Center Build</h3>
-      <p>End-to-end data center setup — physical cabling, fiber optic runs, server rack commissioning, and full network config.</p>
-      <div class="skill-tags">
-        <span class="skill-tag">data center</span>
-        <span class="skill-tag">fiber optic</span>
-        <span class="skill-tag">networking</span>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="copy">built with ❤️ by <span>mohanad m dirar</span> · <span>© 2025</span></div>
+  </footer>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-label">// education</div>
-  <div class="section-title">The official stuff</div>
-  <div class="edu-list">
-    <div class="edu-item">
-      <div class="edu-icon">🎓</div>
-      <div>
-        <div class="edu-degree">Bachelor's Degree in Computer Science</div>
-        <div class="edu-school">Faculty of Computer Science &amp; IT · Sudan Open University</div>
-        <div class="edu-year">Graduated 2024</div>
-      </div>
-    </div>
-    <div class="edu-item">
-      <div class="edu-icon">⚡</div>
-      <div>
-        <div class="edu-degree">Diploma — Electronic &amp; Telecom Engineering</div>
-        <div class="edu-school">Sudan · Where the hardware obsession started</div>
-        <div class="edu-year">Graduated 2016</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER CONTACT -->
-<section id="contact">
-  <div class="section-label">// get in touch</div>
-  <div class="section-title">Let's build something cool 🚀</div>
-  <p class="sub">Got an interesting project, a job opportunity, or just want to geek out about RF and drones?</p>
-  <div class="footer-btns">
-    <a class="footer-btn" href="mailto:mohneddirar@hotmail.com">📧 mohneddirar@hotmail.com</a>
-    <a class="footer-btn" href="https://wa.me/97466926299" target="_blank">💬 WhatsApp +974 6692 6299</a>
-    <a class="footer-btn" href="https://wa.me/97470272762" target="_blank">💼 WA Business +974 7027 2762</a>
-    <a class="footer-btn" href="tel:+97470272762">📞 +974 7027 2762</a>
-    <a class="footer-btn" href="https://linkedin.com/in/mohanad-dirar/" target="_blank">💼 LinkedIn</a>
-  </div>
-  <div class="footer-copy">
-    built with ❤️ by <span>mohanad m dirar</span> · doha, qatar · 2025<br/>
-    <span>$ echo "always learning, always building" 🇸🇩</span>
-  </div>
-</section>
-
+</div><!-- /page -->
 </body>
 </html>
